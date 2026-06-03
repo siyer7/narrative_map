@@ -8,21 +8,27 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
 
 # Data
 
-For this specific purpose, the data/podcast_movie
-
 1. *data/podcast*: The “Podcast” ECoG dataset for modeling neural activity during natural language comprehension | Scientific Data
-   * d
+   * paper: [The “Podcast” ECoG dataset for modeling neural activity during natural language comprehension](https://www.nature.com/articles/s41597-025-05462-2)
+   * [audio/text stimulus](https://www.thisamericanlife.org/631/transcript) (story 1)
 2. *data/movie*
    * paper: [Multimodal single-neuron, intracranial EEG, and fMRI brain responses during movie watching in human patients | Scientific Data](https://www.nature.com/articles/s41597-024-03029-1.pdf)
-   * [movie stimulus](https://drive.google.com/file/d/13IgC5VGRwV8OgztgX56IN9zMaOSFukdr/view?usp=share_link)
-   * *frames/*: the visual data. Contains individual, 1s frames (excluding the first 10s that have the instructions on the screen)
-   * *dialogue*: the text data. Should be easy to extract.
+   * [movie stimulus](https://drive.google.com/file/d/13IgC5VGRwV8OgztgX56IN9zMaOSFukdr/view?usp=share_link): audio-visual data.
+   * *visual_frames/*: the visual data. Contains individual, 1s frames (excluding the first 10s that have the instructions on the screen)
+   * *text_dialogue*: the text data. Should be easy to extract.
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
    * *visual_annotations.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
 
 # Plan
 
-1. Podcast
-   * d
-2. Movie
-   * dd
+0. Curate data: scrape text data for both podcast and movie.
+1. Build model: a next-token predicting agent with a certain context-window. This model should be able to be prompted for memory later (see point 3).
+* variables: token length, context-window length
+2. Investigate PE correlates during processing: what do PE peaks coincide with? For podcast, would have to manually inspect. For movie, might be slightly easier given *scenecut_info.csv*, *visual_annotations.csv*, etc.
+* variables: PE metric
+3. Investigate PE correlates during recall: when prompted to freely recall, what does the model emphasize, what does it forget? How about when cued with a specific instance in podcast/movie and asked to recall what happened before/after?
+* variables: something like 'forgetting rate' - we dont want the model to remember everything.
+
+# Notes
+
+* Write interpretable code!
