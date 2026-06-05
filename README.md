@@ -22,7 +22,7 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * *text_dialogue*: the text data. Should be easy to extract.
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
    * *visual_annots.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
-   * *avg_suspense.csv*: continuous suspense ratings of the movie collected from participants in a different study, with relatively low sampling rate (thus, likely needs intrapolation).
+   * *avg_suspense.csv*: continuous suspense ratings of the movie collected from participants in a different study, with relatively low sampling rate (thus, likely needs interpolation).
 
 # Plan
 
