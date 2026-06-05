@@ -1,0 +1,211 @@
+---
+title: "analyze_boundaries"
+output: html_document
+---
+
+```{r}
+library(mosaic)
+mydata <- read.table("comparison_to_EB_vals.csv", header=TRUE, sep=",")
+mydata$priming = factor(mydata$priming)
+mydata$sub = factor(mydata$sub)
+
+summary(mydata)
+
+mydata$priming <- ordered(mydata$priming,
+                         levels = c("np", "loc", "soc"))
+```
+
+```{r}
+library(ggplot2) 
+
+pal <- c("#E6AF2E", "#E93423","#2B6681")
+p <- ggplot(mydata, aes(x = priming, y = loc_bounds)) +
+
+  geom_boxplot(aes(color = priming),
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA
+  ) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots( aes(fill = priming, color = priming),
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    dotsize = .3,#28,
+    ## adjust grouping (binning) of observations 
+    binwidth = .05
+  ) + coord_flip() + 
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  ## remove white space on the left
+  coord_cartesian(xlim = c(0.5, NA), ylim = c(0,1)) 
+
+p + labs(x = 'Prime', y = 'Jaccard Index') + theme(axis.title = element_text(size = 17),axis.text = element_text(size = 12), plot.title = element_text(size = 18, , hjust = .5), text = element_text(family = "Arial", size = 15)) + scale_x_discrete(labels=c("np" = "No prime", "loc" = "Location", "soc" = "Social")) + theme(panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+```{r}
+# Compute the analysis of variance
+res.aov <- aov(loc_bounds ~ priming, data = mydata)
+# Summary of the analysis
+summary(res.aov)
+```
+
+```{r}
+TukeyHSD(res.aov)
+```
+```{r}
+mean(loc_bounds ~ priming, data = mydata)
+```
+
+
+
+```{r}
+
+p <- ggplot(mydata, aes(x = priming, y = soc_bounds)) +
+
+  geom_boxplot(aes(color = priming),
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA ## `outlier.shape = NA` works as well
+  ) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots( aes(fill = priming, color = priming),
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    dotsize = .3,#28,
+    ## adjust grouping (binning) of observations 
+    binwidth = .05
+  ) + coord_flip() + 
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  ## remove white space on the left
+  coord_cartesian(xlim = c(0.5, NA), ylim = c(0,1)) 
+
+p + labs(x = 'Prime', y = 'Jaccard Index') + theme(axis.title = element_text(size = 17),axis.text = element_text(size = 12), plot.title = element_text(size = 18, , hjust = .5), text = element_text(family = "Arial", size = 15)) + scale_x_discrete(labels=c("np" = "No prime", "loc" = "Location", "soc" = "Social")) + theme(panel.background = element_blank(), axis.line = element_line(colour = "black"))
+
+```
+
+```{r}
+# Compute the analysis of variance
+res.aov <- aov(soc_bounds ~ priming, data = mydata)
+# Summary of the analysis
+summary(res.aov)
+```
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+```{r}
+library(ggplot2) 
+
+pal <- c("#E6AF2E", "#E93423","#2B6681")
+p <- ggplot(mydata, aes(x = priming, y = loc_targets)) +
+
+  geom_boxplot(aes(color = priming),
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA ## `outlier.shape = NA` works as well
+  ) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots( aes(fill = priming, color = priming),
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    dotsize = .3,#28,
+    ## adjust grouping (binning) of observations 
+    binwidth = .05
+  ) + coord_flip() + 
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  ## remove white space on the left
+  coord_cartesian(xlim = c(0.5, NA), ylim = c(0,1)) 
+
+p + labs(x = 'Prime', y = 'Jaccard Index') + theme(axis.title = element_text(size = 17),axis.text = element_text(size = 12), plot.title = element_text(size = 18, , hjust = .5), text = element_text(family = "Arial", size = 15)) + scale_x_discrete(labels=c("np" = "No prime", "loc" = "Location", "soc" = "Social")) + theme(panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+```{r}
+# Compute the analysis of variance
+res.aov <- aov(loc_targets ~ priming, data = mydata)
+# Summary of the analysis
+summary(res.aov)
+```
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+```{r}
+library(ggplot2) 
+
+pal <- c("#E6AF2E", "#E93423","#2B6681")
+p <- ggplot(mydata, aes(x = priming, y = soc_targets)) +
+
+  geom_boxplot(aes(color = priming),
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA ## `outlier.shape = NA` works as well
+  ) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots( aes(fill = priming, color = priming),
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.1, 
+    dotsize = .3,#28,
+    ## adjust grouping (binning) of observations 
+    binwidth = .05
+  ) + coord_flip() + 
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  ## remove white space on the left
+  coord_cartesian(xlim = c(0.5, NA), ylim = c(0,1)) 
+
+p + labs(x = 'Prime', y = 'Jaccard Index') + theme(axis.title = element_text(size = 17),axis.text = element_text(size = 12), plot.title = element_text(size = 18, , hjust = .5), text = element_text(family = "Arial", size = 15)) + scale_x_discrete(labels=c("np" = "No prime", "loc" = "Location", "soc" = "Social")) + theme(panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+```{r}
+# Compute the analysis of variance
+res.aov <- aov(soc_targets ~ priming, data = mydata)
+# Summary of the analysis
+summary(res.aov)
+```
+
+```{r}
+TukeyHSD(res.aov)
+```
+
+
+
+```{r}
+for(prime_type in c("np", "loc", "soc")) {
+  prime_data = filter(mydata, priming == prime_type)
+  bound_target_diff <- prime_data$loc_bounds-prime_data$loc_targets
+  print(mean(bound_target_diff))
+  print(t_test(bound_target_diff))
+}
+
+for(prime_type in c("np", "loc", "soc")) {
+  prime_data = filter(mydata, priming== prime_type)
+  bound_target_diff <- prime_data$soc_bounds-prime_data$soc_targets
+  print(mean(bound_target_diff))
+  print(t_test(bound_target_diff))
+}
+```
+```{r}
+mean(((mydata$loc_bounds)+(mydata$soc_bounds))/2)
+mean(((mydata$loc_targets)+(mydata$soc_targets))/2)
+mean(((mydata$loc_bounds-mydata$loc_targets)+(mydata$soc_bounds-mydata$soc_targets))/2)
+```
+
+```{r}
+for(prime_type in c("np", "loc", "soc")) {
+  prime_data = filter(mydata, priming == prime_type)
+  print(round(mean(prime_data$loc_bounds),3))
+  print(round(mean(prime_data$loc_targets),3))
+  print(round(mean(prime_data$soc_bounds),3))
+  print(round(mean(prime_data$soc_targets),3))
+}
+```

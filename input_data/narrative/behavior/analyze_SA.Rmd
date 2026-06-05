@@ -1,0 +1,85 @@
+---
+title: "analyze_SA"
+output: html_document
+---
+
+```{r}
+datafile = "online_SA.csv"
+plot_title = 'Online participants'
+
+#datafile = "fMRI_SA.csv"
+#plot_title = 'fMRI participants'
+```
+
+```{r}
+
+mydata <- read.table(datafile, header=TRUE, sep=",")
+mydata$priming = factor(mydata$priming)
+mydata$sub = factor(mydata$sub)
+
+summary(mydata)
+
+aggregate(x = mydata$avg, by = list(mydata$priming), FUN = mean) 
+aggregate(x = mydata$avg, by = list(mydata$qt), FUN = mean)
+
+mydata$priming <- relevel(mydata$priming, ref = "np")
+
+```
+```{r, fig.width=8, fig.height=3.5}
+library(ggplot2) 
+qt_names <- list(
+  'avg_loc'= 'Location Questions',
+  'avg_soc' = 'Social Questions'
+)
+
+qt_labeller <- function(variable,value){
+  return(qt_names[value])
+}
+
+pal <- c("#E6AF2E", "#E93423","#2B6681")
+p <- ggplot(mydata, aes(x = priming, y = avg)) + facet_grid(~qt, labeller = qt_labeller) +
+  geom_boxplot(aes(color = priming),
+    width = .12, 
+    ## remove outliers
+    outlier.color = NA ## `outlier.shape = NA` works as well
+  ) +
+  ## add dot plots from {ggdist} package
+  ggdist::stat_dots( aes(fill = priming, color = priming),
+    ## orientation to the left
+    side = "left", 
+    ## move geom to the left
+    justification = 1.15, 
+    dotsize = .15,
+    ## adjust grouping (binning) of observations 
+    binwidth = .2
+  ) + coord_flip() + 
+  scale_color_manual(values = pal, guide = "none") +
+  scale_fill_manual(values = pal, guide = "none") +
+  ## remove white space on the left
+  coord_cartesian(xlim = c(0.1, NA), ylim = c(0,3)) 
+
+p + labs(x='', y = 'Average Score',title=plot_title) + theme(title=element_text(size=20),axis.title = element_text(size = 18),axis.text = element_text(size = 12), plot.title = element_text(size = 19, hjust = .5), text = element_text(family = "Arial", size = 15)) + scale_x_discrete(labels=c("np" = "No prime", "loc" = "Location\nprime", "soc" = "Social\nprime")) + theme(panel.background = element_blank(), axis.line = element_line(colour = "black"))
+```
+
+Mixed effects model
+```{r}
+library(lme4)
+library(lmerTest)
+fit <- lmer(avg ~ priming + qt + priming*qt + (1|sub), data = mydata)
+summary(fit)
+```
+
+```{r}
+filt_data <- mydata[mydata$qt == "avg_loc",]
+filt_data$qt <- factor(filt_data$qt)
+filt_data <- filt_data[filt_data$priming != "np",]
+filt_data$priming <- factor(filt_data$priming)
+t.test(avg ~ priming, data = filt_data)
+```
+```{r}
+filt_data <- mydata[mydata$qt == "avg_soc",]
+filt_data$qt <- factor(filt_data$qt)
+filt_data <- filt_data[filt_data$priming != "np",]
+filt_data$priming <- factor(filt_data$priming)
+t.test(avg ~ priming, data = filt_data)
+```

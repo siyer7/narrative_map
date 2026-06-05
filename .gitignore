@@ -1,3 +1,5 @@
-code/arch/
-data/
-ScriptPriming/
+code/narrative/arch/
+data/narrative/ScriptPriming/
+
+*.png
+*.jpg

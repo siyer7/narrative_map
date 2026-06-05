@@ -17,7 +17,7 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * *visual_frames/*: the visual data. Contains individual, 1s frames (excluding the first 10s that have the instructions on the screen)
    * *text_dialogue*: the text data. Should be easy to extract.
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
-   * *visual_annotations.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
+   * *visual_annots.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
 
 # Plan
 
@@ -28,6 +28,17 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
 * variables: PE metric
 3. Investigate PE correlates during recall: when prompted to freely recall, what does the model emphasize, what does it forget? How about when cued with a specific instance in podcast/movie and asked to recall what happened before/after?
 * variables: something like 'forgetting rate' - we dont want the model to remember everything.
+
+# Environment
+
+```bash
+# Create and activate (first time)
+conda env create -f environment.yml
+conda activate narrative_map
+
+# After installing new packages, re-export before committing
+conda env export -n narrative_map | sed 's|name: .*|name: narrative_map|' > environment.yml
+```
 
 # Notes
 
