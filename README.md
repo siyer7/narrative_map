@@ -17,7 +17,7 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * [audio/text stimulus](https://www.thisamericanlife.org/631/transcript) (story 1)
 2. *data/movie*
    * paper: [Multimodal single-neuron, intracranial EEG, and fMRI brain responses during movie watching in human patients | Scientific Data](https://www.nature.com/articles/s41597-024-03029-1.pdf)
-   * [movie stimulus](https://drive.google.com/file/d/13IgC5VGRwV8OgztgX56IN9zMaOSFukdr/view?usp=share_link): audio-visual data.
+   * [movie stimulus](https://drive.google.com/file/d/13IgC5VGRwV8OgztgX56IN9zMaOSFukdr/view?usp=share_link): audio-visual data
    * *visual_frames/*: the visual data. Contains individual, 1s frames (excluding the first 10s that have the instructions on the screen)
    * *text_dialogue*: the text data. Should be easy to extract.
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
