@@ -6,6 +6,10 @@ The leading theory is rooted in the assumption that the brain is always performi
 
 Here, we want to leverage this hypothesis to build a model that parses 1) text from a dataset where humans listen to a podcast, and 2) text + visuals from a dataset where humans watch a movie, and *outputs the temporal locations of event segments/boundaries*. WM can be operationalized as a context-window, while PE can be operationalized as entropy, surprisal, embedding changes, etc.
 
+# Papers
+
+* [Large language models can segment narrative events similarly to humans](https://link.springer.com/article/10.3758/s13428-024-02569-z)
+
 # Data
 
 1. *data/podcast*: The “Podcast” ECoG dataset for modeling neural activity during natural language comprehension | Scientific Data
@@ -18,15 +22,21 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * *text_dialogue*: the text data. Should be easy to extract.
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
    * *visual_annots.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
+   * *avg_suspense.csv*: continuous suspense ratings of the movie collected from participants in a different study, with relatively low sampling rate (thus, likely needs intrapolation).
 
 # Plan
 
 0. Curate data: scrape text data for both podcast and movie.
 1. Build model: a next-token predicting agent with a certain context-window. This model should be able to be prompted for memory later (see point 3).
+
 * variables: token length, context-window length
-2. Investigate PE correlates during processing: what do PE peaks coincide with? For podcast, would have to manually inspect. For movie, might be slightly easier given *scenecut_info.csv*, *visual_annotations.csv*, etc.
+
+2. Investigate PE correlates during processing: what do PE peaks coincide with? For podcast, consider event annotations from the paper linked above, etc. For movie, consider *scenecut_info.csv*, *visual_annotations.csv, *avg_suspense.csv**, etc.
+
 * variables: PE metric
-3. Investigate PE correlates during recall: when prompted to freely recall, what does the model emphasize, what does it forget? How about when cued with a specific instance in podcast/movie and asked to recall what happened before/after?
+
+3. Investigate PE implications during recall: when prompted to freely recall, what does the model emphasize, what does it forget? How about when cued with a specific instance in podcast/movie and asked to recall what happened before/after?
+
 * variables: something like 'forgetting rate' - we dont want the model to remember everything.
 
 # Environment
