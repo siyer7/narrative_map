@@ -2,4 +2,6 @@ code/narrative/arch/
 data/narrative/ScriptPriming/
 
 *.png
-*.jpginput_data/narrative/ScriptPriming/
+*.jpg
+
+input_data/narrative/ScriptPriming/
