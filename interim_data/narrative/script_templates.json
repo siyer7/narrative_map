@@ -1,0 +1,54 @@
+{
+  "location": {
+    "restaurant": [
+      "how is the restaurant decorated?",
+      "what are the menus like?",
+      "what does each person order?",
+      "how do the clients like the food?"
+    ],
+    "airport": [
+      "when the clients arrive at the airport, how much time do they have until their flight departs?",
+      "what is the reason for the hold-up at security?",
+      "toward which gate are the clients walking?",
+      "what section and seat does each client sit in on the plane?"
+    ],
+    "grocery_store": [
+      "what is the grocery store like upon entering?",
+      "what items do the clients pick out to buy?",
+      "how many checkout lanes are open, and which one do the clients step into?",
+      "how much are the groceries, and what method of payment do the clients use?"
+    ],
+    "lecture_hall": [
+      "what is the lecture hall like?",
+      "what class are the students in, and what is the day's lecture about?",
+      "what is something taught in lecture?",
+      "what is the next assessment/assignment for the class, and when is it scheduled/due?"
+    ]
+  },
+  "social": {
+    "breakup": [
+      "for how long has the initiator of the breakup been thinking about breaking up with his/her partner?",
+      "what is the initial reason stated by the initiator for why he/she is breaking up?",
+      "does the person who is being broken up with want to break up, and what is the reason stated by them for this?",
+      "who wants what items back as a result of the breakup?"
+    ],
+    "proposal": [
+      "for how long has the couple been dating?",
+      "how many diamonds are on the ring, and what is the diamond color?",
+      "in/on what item is the ring presented?",
+      "who does the new fiancee text first?"
+    ],
+    "business_deal": [
+      "what is each businessperson's job title?",
+      "how much money is at stake in the initial offer made?",
+      "what is the name of the other industry competitor?",
+      "with what gesture do the business partners secure the deal?"
+    ],
+    "meet_cute": [
+      "what object is the initiator of the interaction holding when he/she first notices the other person?",
+      "what is the initial question that begins the conversation between the couple?",
+      "when will be the next time the couple meets, and for what occasion?",
+      "what time is it when the couple parts?"
+    ]
+  }
+}

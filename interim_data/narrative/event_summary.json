@@ -1,18 +1,140 @@
 {
   "11": {
     "locational": [
-      "Restaurant",
-      "Back corner",
-      "Diner",
-      "Booth",
-      "Bar"
+      {
+        "description": "Characters enter a 70s-style diner and are seated at a back booth.",
+        "sentences": [
+          "The restaurant he had chosen to meet at was reminiscent of a diner from the 70\u2019s.",
+          "There was black and white checkerboard tiling on the floor, a long bar in the front, and booths and stools with red, leather upholstery. ",
+          "The hostess seated them at a booth in the back corner of the diner.  ",
+          "The menus were laminated posters with silly names for all the foods, and since they didn\u2019t want to read through each item description, they settled on familiar orders.",
+          "People sitting at the bar looked over and quickly averted their gaze when they figured what was happening. ",
+          "The waiter appeared with the burger and reuben and set them in front of them."
+        ]
+      },
+      {
+        "description": "Sadie sits back in her seat.",
+        "sentences": [
+          "A bell chimed as the door swung open, and Sadie entered to find Thomas, who was dreading the approaching breakup conversation he was about to start, ruminating at the bar.",
+          "Thomas stood up and gave Sadie a side hug, asking quickly, \u201cHow was your day?\u201d",
+          "She clung onto him, \u201cIt was okay- I missed you today.\u201d",
+          "Sadie slipped into the cushioned seat and grabbed Thomas\u2019 hand.",
+          "\u201cTell me about your day!\u201d she sang.",
+          "Sadie asked, \u201cWhat\u2019s wrong?\u201d ",
+          "After a few moments, Thomas let out a deep breath and said, \u201cSadie, I\u2019ve been thinking, and I need a break from this relationship because I need to figure out my career path on my own.\u201d",
+          "Sadie sat back in her seat.",
+          "Thomas and Sadie realized there were menus on the table, and they glanced at them quickly.",
+          "Sadie quickly asked about the reuben, and the waiter told her it was excellent.",
+          "Sadie- not so quietly- burst into tears. ",
+          "I think we should stay together because we can change how much we hang out. ",
+          "With the waiter gone, Sadie suddenly stood up, grabbed half of the reuben, and shook it at him as she growled, \u201cDon\u2019t follow me, and don\u2019t talk to me anymore!",
+          "She stormed off, and the bell above the door jingled cheerfully as the door closed behind her."
+        ]
+      },
+      {
+        "description": "Thomas picks at his fingernails.",
+        "sentences": [
+          "Thomas picked at his fingernails.",
+          "Thomas continued, \u201cThings have been really picking up at work, and I\u2019m not sure that this is the job I want to do anymore.",
+          "\u201cI\u2019ll have a burger, no tomatoes,\u201d Thomas said.",
+          "Thomas chewed on his bottom lip and picked at his now bleeding hangnail. ",
+          "He grabbed his burger and took a bite of it, which created a dry and fishy taste in his mouth."
+        ]
+      },
+      {
+        "description": "The waiter appears and cheerily asks if they've decided what they'd like.",
+        "sentences": [
+          "He looked away and addressed the hostess coming towards them, \u201cCan we have a booth in the back?\u201d",
+          "She shrugged and after loudly popping her bubblegum replied, \u201cSure, honey.\u201d",
+          "Plus, it\u2019s been really overwhelming between working and figuring out if I should change careers, and I really feel like I need more time to figure it out.\u201d ",
+          "The waiter appeared and cheerily asked, \u201cHave you decided what you would like?\u201d",
+          "Confirming that that was all they\u2019d like, the waiter walked away. ",
+          "She whispered, \u201cIs this really what you want?",
+          "We don\u2019t have to hang out all the time, or as much as we do now.\u201d",
+          "\u201cIs there anything else I can get for you two?",
+          "Will you be getting dessert tonight?\u201d he asked.",
+          "Also, I want my polaroid camera and Beatles poster back!\u201d",
+          "He dropped it back on his plate and wondered if the restaurant was responsible for the foul taste. "
+        ]
+      },
+      {
+        "description": "Thomas bursts into tears.",
+        "sentences": [
+          "Thomas had been thinking about breaking up with her for 2 months now.",
+          "Thomas looked away and took a deep breath. ",
+          "I don\u2019t understand- things were fine, I thought. ",
+          "\u201cOh no, we\u2019re good, thanks,\u201d said Thomas blankly.",
+          "Thomas sat there for awhile surprised at how quickly everything had transpired. "
+        ]
+      }
     ],
     "social": [
-      "Thomas' initial reluctance to discuss his feelings.",
-      "Sadie's initial hesitation but eventual determination.",
-      "Thomas' shift from passive to active in discussing his situation.",
-      "Sadie's emotional reaction to Thomas' revelation.",
-      "The impact of Sadie's sudden departure on the atmosphere."
+      {
+        "description": "Thomas' initial reluctance to discuss his feelings.",
+        "sentences": [
+          "Thomas had been thinking about breaking up with her for 2 months now.",
+          "He looked away and addressed the hostess coming towards them, \u201cCan we have a booth in the back?\u201d",
+          "Thomas looked away and took a deep breath. ",
+          "Thomas picked at his fingernails.",
+          "\u201cI\u2019ll have a burger, no tomatoes,\u201d Thomas said.",
+          "Thomas chewed on his bottom lip and picked at his now bleeding hangnail. ",
+          "\u201cOh no, we\u2019re good, thanks,\u201d said Thomas blankly."
+        ]
+      },
+      {
+        "description": "Sadie's initial hesitation but eventual determination.",
+        "sentences": [
+          "She clung onto him, \u201cIt was okay- I missed you today.\u201d",
+          "She shrugged and after loudly popping her bubblegum replied, \u201cSure, honey.\u201d",
+          "Sadie asked, \u201cWhat\u2019s wrong?\u201d ",
+          "Sadie sat back in her seat.",
+          "The waiter appeared and cheerily asked, \u201cHave you decided what you would like?\u201d",
+          "Sadie quickly asked about the reuben, and the waiter told her it was excellent.",
+          "Confirming that that was all they\u2019d like, the waiter walked away. ",
+          "Sadie- not so quietly- burst into tears. ",
+          "People sitting at the bar looked over and quickly averted their gaze when they figured what was happening. ",
+          "She whispered, \u201cIs this really what you want?",
+          "I don\u2019t understand- things were fine, I thought. ",
+          "\u201cIs there anything else I can get for you two?",
+          "Will you be getting dessert tonight?\u201d he asked.",
+          "With the waiter gone, Sadie suddenly stood up, grabbed half of the reuben, and shook it at him as she growled, \u201cDon\u2019t follow me, and don\u2019t talk to me anymore!",
+          "He grabbed his burger and took a bite of it, which created a dry and fishy taste in his mouth."
+        ]
+      },
+      {
+        "description": "Thomas' shift from passive to active in discussing his situation.",
+        "sentences": [
+          "The restaurant he had chosen to meet at was reminiscent of a diner from the 70\u2019s.",
+          "The hostess seated them at a booth in the back corner of the diner.  ",
+          "Thomas continued, \u201cThings have been really picking up at work, and I\u2019m not sure that this is the job I want to do anymore.",
+          "Plus, it\u2019s been really overwhelming between working and figuring out if I should change careers, and I really feel like I need more time to figure it out.\u201d ",
+          "The menus were laminated posters with silly names for all the foods, and since they didn\u2019t want to read through each item description, they settled on familiar orders.",
+          "The waiter appeared with the burger and reuben and set them in front of them.",
+          "Thomas sat there for awhile surprised at how quickly everything had transpired. ",
+          "He dropped it back on his plate and wondered if the restaurant was responsible for the foul taste. "
+        ]
+      },
+      {
+        "description": "Sadie's emotional reaction to Thomas' revelation.",
+        "sentences": [
+          "A bell chimed as the door swung open, and Sadie entered to find Thomas, who was dreading the approaching breakup conversation he was about to start, ruminating at the bar.",
+          "Thomas stood up and gave Sadie a side hug, asking quickly, \u201cHow was your day?\u201d",
+          "Sadie slipped into the cushioned seat and grabbed Thomas\u2019 hand.",
+          "\u201cTell me about your day!\u201d she sang.",
+          "After a few moments, Thomas let out a deep breath and said, \u201cSadie, I\u2019ve been thinking, and I need a break from this relationship because I need to figure out my career path on my own.\u201d",
+          "Thomas and Sadie realized there were menus on the table, and they glanced at them quickly.",
+          "Also, I want my polaroid camera and Beatles poster back!\u201d",
+          "She stormed off, and the bell above the door jingled cheerfully as the door closed behind her."
+        ]
+      },
+      {
+        "description": "The impact of Sadie's sudden departure on the atmosphere.",
+        "sentences": [
+          "There was black and white checkerboard tiling on the floor, a long bar in the front, and booths and stools with red, leather upholstery. ",
+          "I think we should stay together because we can change how much we hang out. ",
+          "We don\u2019t have to hang out all the time, or as much as we do now.\u201d"
+        ]
+      }
     ]
   }
 }
