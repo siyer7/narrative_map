@@ -13,9 +13,11 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
 # Data
 
 1. *data/podcast*: The “Podcast” ECoG dataset for modeling neural activity during natural language comprehension | Scientific Data
+
    * paper: [The “Podcast” ECoG dataset for modeling neural activity during natural language comprehension](https://www.nature.com/articles/s41597-025-05462-2)
    * [audio/text stimulus](https://www.thisamericanlife.org/631/transcript) (story 1)
 2. *data/movie*
+
    * paper: [Multimodal single-neuron, intracranial EEG, and fMRI brain responses during movie watching in human patients | Scientific Data](https://www.nature.com/articles/s41597-024-03029-1.pdf)
    * [movie stimulus](https://app.box.com/s/av4ly4d01h5biuvt17o81mmwqokabzth): audio-visual data
    * *visual_frames/*: the visual data. Contains individual, 1s frames (excluding the first 10s that have the instructions on the screen)
@@ -23,6 +25,9 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
    * *visual_annots.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
    * *avg_suspense.csv*: continuous suspense ratings of the movie collected from participants in a different study, with relatively low sampling rate (thus, likely needs interpolation).
+   * *neural/df_spikes_processed.parquet* (1123 neurs x 479 time bins): z-scored over encoding period.
+   * *neural/valid_mask.npy* (1123, 479): a mask of valid/invalid time periods that varies across neurons. False = invalid.
+   * *neural/neuron_regions.csv* (1123 neurons): the corresponding brain region for every neuron. Can analyze each region separately.
 
 # Plan
 
