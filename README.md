@@ -25,9 +25,10 @@ Here, we want to leverage this hypothesis to build a model that parses 1) text f
    * *scenecut_info.csv*: authors' documentation of when scene and camera-angle changes occur in the movie.
    * *visual_annots.csv*: our hand-annotations of which objects appear in the gaze of a sample subject (yes, gaze data was also collected). For now, we can assume this is pretty generalizable across subjects.
    * *avg_suspense.csv*: continuous suspense ratings of the movie collected from participants in a different study, with relatively low sampling rate (thus, likely needs interpolation).
-   * *neural/df_spikes_processed.parquet* (1123 neurs x 479 time bins): per-neuron spike counts within 1 second bins across the movie.
-   * *neural/valid_mask.npy* (1123, 479):a mask of valid/invalid time periods that varies across neurons. False = invalid = time points with noisy or missing neural recording. You can choose to retain or drop these time points for analyses.
-   * *neural/neuron_regions.csv* (1123 neurons): the corresponding brain region for every neuron. Can analyze each region separately. Total 5 cool brain regions.
+   * *neural/*
+     * *df_spikes_processed.parquet* (1123 neurs x 479 time bins): per-neuron spike counts within 1 second bins across the movie.
+     * *valid_mask.npy* (1123, 479): a mask of valid/invalid time periods that varies across neurons. False = invalid = time points with noisy or missing neural recording. You can choose to retain or drop these time points for analyses.
+     * *neuron_regions.csv* (1123 neurons): the corresponding brain region for every neuron. Can analyze each region separately. Total 5 cool brain regions.
 
 # Plan
 
