@@ -11,3 +11,7 @@ def plot_style():
     mpl.rcParams['xtick.direction'], mpl.rcParams['ytick.direction'] = 'in', 'in'
     # remove top and right splines
     mpl.rcParams['axes.spines.top'], mpl.rcParams['axes.spines.right'] = False, False
+
+def norm01(x):
+    import numpy as np
+    return (x - np.min(x)) / (np.max(x) - np.min(x))
