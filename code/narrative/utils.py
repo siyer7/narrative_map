@@ -14,4 +14,4 @@ def plot_style():
 
 def norm01(x):
     import numpy as np
-    return (x - np.min(x)) / (np.max(x) - np.min(x))
+    return (x - np.nanmin(x)) / (np.nanmax(x) - np.nanmin(x))
