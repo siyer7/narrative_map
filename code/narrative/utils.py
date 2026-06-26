@@ -1,8 +1,8 @@
-def plot_style():
+def plot_style(context):
     import seaborn as sns, matplotlib.pyplot as plt, matplotlib as mpl
 
     # sets fontsize etc. appropriate for presentation/paper, etc.
-    sns.set(context='talk', style='white', palette='deep')
+    sns.set(context=context, style='white', palette='deep')
 
     # keep text editable in svg
     plt.rcParams['svg.fonttype'] = 'none'
@@ -79,6 +79,7 @@ def generate_stim(stim_dim=10, total_time=100, n_events=10, noise_std=0.2, seed=
     autoreg_directions = np.array(autoreg_directions)
 
     return dict(stim=stim, event_lengths=event_lengths,
+                event_boundaries=np.concatenate([[0], np.cumsum(event_lengths)[:-1]]), 
                 event_templates=np.array(event_templates),
                 autoreg_directions=autoreg_directions,
                 autoreg_features=autoreg_features)
