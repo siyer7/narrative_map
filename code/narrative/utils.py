@@ -16,10 +16,12 @@ def norm01(x):
     import numpy as np
     return (x - np.nanmin(x)) / (np.nanmax(x) - np.nanmin(x))
 
-def generate_stim(stim_dim=10, event_dim=5, n_stims=100, n_events=10, stim_noise=0.05,
+def generate_stim(stim_dim=10, event_dim=5, n_stims=100, min_events=5, max_events=10, stim_noise=0.05,
                   prop_related_events=0.2, related_event_template_noise=0.05, seed=None):
     import numpy as np
     rng = np.random.default_rng(seed)
+
+    n_events = int(np.clip(rng.poisson(lam=7), min_events, max_events))
 
     # event_feats: dims shared by all events that carry identity (rest are autoregressive)
     event_feats     = rng.choice(stim_dim, event_dim, replace=False)
