@@ -6,12 +6,10 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 Basics:
 
+## keep coding style/logic similar when possible; for example, for train & test.
 ## lets always iterate back and forth going from pseudocode to code etc.
-
 ## motivate code via comments
-
 ## do not change my variable names or comments unless I say ok to
-
 ## for plotting, instead ax.set_title, ax.set_ylabel, etc. use, ax.set(title, label, etc.), when possible
 
 ## 1. Think Before Coding
