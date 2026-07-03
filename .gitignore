@@ -5,3 +5,5 @@ data/narrative/ScriptPriming/
 *.jpg
 
 input_data/narrative/ScriptPriming/
+
+__pycache__/
