@@ -16,12 +16,12 @@ def norm01(x):
     import numpy as np
     return (x - np.nanmin(x)) / (np.nanmax(x) - np.nanmin(x))
 
-def generate_stim(stim_dim=10, event_dim=5, n_stims=100, min_events=5, max_events=5, stim_noise=0.05,
+def generate_stim(stim_dim=10, event_dim=5, n_stims=100, min_events=5, mean_events=5, max_events=5, event_len_var = .2, stim_noise=0.05,
                   prop_related_events=0.2, related_event_template_noise=0.05, seed=None):
     import numpy as np
     rng = np.random.default_rng(seed)
 
-    n_events = int(np.clip(rng.poisson(lam=5), min_events, max_events))
+    n_events = int(np.clip(rng.poisson(lam=mean_events), min_events, max_events))
 
     # event_feats: dims shared by all events that carry identity (rest are autoregressive)
     event_feats     = rng.choice(stim_dim, event_dim, replace=False)
@@ -42,14 +42,14 @@ def generate_stim(stim_dim=10, event_dim=5, n_stims=100, min_events=5, max_event
 
     # generate event lengths via normal dist; normalize before int cast so no event overshoots n_stims
     event_avg_len = n_stims / n_events
-    raw_lengths   = np.maximum(rng.normal(event_avg_len, event_avg_len * 0.2, n_events), 5)
+    raw_lengths   = np.maximum(rng.normal(event_avg_len, event_avg_len * event_len_var, n_events), 5)
     event_lengths = (raw_lengths / raw_lengths.sum() * n_stims).astype(int)
     event_lengths = np.clip(event_lengths, 5, None)  # minimum event length of 5
     event_lengths[-1] = n_stims - event_lengths[:-1].sum()  # ensure exact sum = n_stims
 
     # Generate stimulus matrix with autoregressive event structure
     autoreg_directions = []  # 0=decay (1→0), 1=build (0→1) per event
-    stim          = np.zeros((n_stims, stim_dim))
+    stim          = np.zeros((stim_dim, n_stims))
     event_start_t = 0   # global timepoint where current event starts
 
     for event_idx in range(n_events):
@@ -71,11 +71,11 @@ def generate_stim(stim_dim=10, event_dim=5, n_stims=100, min_events=5, max_event
             dist_to_target = target - x_prev
             x_t            = x_prev + pull_strength * dist_to_target + rng.normal(0, stim_noise, len(non_event_feats))
             x_t            = np.clip(x_t, 0, 1)  # keep in valid range
-            stim[t, non_event_feats] = x_t
+            stim[non_event_feats, t] = x_t
             x_prev                   = x_t
 
             # event_feats: low variation between stims — jitter around template value
-            stim[t, event_feats] = np.clip(event_template[event_feats] + rng.normal(0, stim_noise, len(event_feats)), 0, 1)
+            stim[event_feats, t] = np.clip(event_template[event_feats] + rng.normal(0, stim_noise, len(event_feats)), 0, 1)
 
         event_start_t += event_len
 
