@@ -1,15 +1,9 @@
-def plot_style(context):
+def plot_style(context='poster'): # other options: 'talk','notebook'
     import seaborn as sns, matplotlib.pyplot as plt, matplotlib as mpl
 
-    # sets fontsize etc. appropriate for presentation/paper, etc.
-    sns.set(context=context, style='white', palette='deep')
-
-    # keep text editable in svg
-    plt.rcParams['svg.fonttype'] = 'none'
-
-    # push ticks inward
+    sns.set(context=context, style='ticks', palette='deep')
+    plt.rcParams['svg.fonttype'] = 'none'     # keep text editable in svg
     mpl.rcParams['xtick.direction'], mpl.rcParams['ytick.direction'] = 'in', 'in'
-    # remove top and right splines
     mpl.rcParams['axes.spines.top'], mpl.rcParams['axes.spines.right'] = False, False
 
 def norm01(x):
