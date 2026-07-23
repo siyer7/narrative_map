@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(jupyter --version)",
+      "Bash(python3 -c \"import nbformat\")"
+    ]
+  }
+}
