@@ -1,4 +1,4 @@
-# see markdown/formalization.md
+# see markdowns/formalization.md
 import numpy as np, matplotlib.pyplot as plt, os
 from matplotlib.transforms import blended_transform_factory
 from utils import plot_style, norm01; plot_style('notebook')
