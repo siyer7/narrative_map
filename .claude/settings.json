@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3 -c ' *)",
       "Bash(jupyter --version)",
-      "Bash(python3 -c \"import nbformat\")"
+      "Bash(python3 -c \"import nbformat\")",
+      "Bash(find /home/nuttidalab/Documents/structuring_contexts -maxdepth 2 -iname '*.md' -not -path '*/.git/*' 2>/dev/null)",
+      "Read(//home/nuttidalab/Documents/structuring_contexts/**)"
     ]
   }
 }
