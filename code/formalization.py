@@ -4,28 +4,28 @@ from matplotlib.transforms import blended_transform_factory
 from utils import plot_style, norm01; plot_style('notebook')
 figs_dir = os.path.join(os.path.dirname(__file__), '..', 'results', 'figs'); os.makedirs(figs_dir, exist_ok=True)
 
-# each scene is a 12-dim embedding: social features 1-5, locational features 6-10, noise features 11/12
+# each scene is a 12-dim embedding: narrative1 features 1-5, narrative2 features 6-10, noise features 11/12
 n_features = 12
-social_features, locational_features, noise_features = slice(0, 5), slice(5, 10), slice(10, 12)
-narratives = {'social': social_features, 'locational': locational_features}
-event_type_names = ['social', 'locational']                                                              # simultaneous dropped for now (make_story still handles it)
+narrative1_features, narrative2_features, noise_features = slice(0, 5), slice(5, 10), slice(10, 12)
+narratives = {'narrative1': narrative1_features, 'narrative2': narrative2_features}
+event_type_names = ['narrative1', 'narrative2']                                                              # simultaneous dropped for now (make_story still handles it)
 
 
 ### story
 def make_story(n_events=6, avg_event_len=10, sd_event_len=2, build_up_increment=1, within_event_noise=.2, noise_sd=.5, seed=0):
     rng = np.random.default_rng(seed)
-    event_types = rng.choice(event_type_names, n_events)                                                # bouts sampled at random; same type may repeat
+    event_types = rng.choice(event_type_names, n_events)                                                # events sampled at random; same type may repeat
     event_lens = rng.integers(avg_event_len - sd_event_len, avg_event_len + sd_event_len + 1, n_events)
     event_starts = np.concatenate(([0], np.cumsum(event_lens)[:-1]))
 
-    # build up: each narrative's features increment per scene during its bouts (random increment per feature, mean = build_up_increment), resume from last recorded level after a gap
-    story = np.zeros((event_lens.sum(), n_features)); social_level, locational_level = np.zeros(5), np.zeros(5); scene = 0
+    # build up: each narrative's features increment per scene during its events (random increment per feature, mean = build_up_increment), resume from last recorded level after a gap
+    story = np.zeros((event_lens.sum(), n_features)); narrative1_level, narrative2_level = np.zeros(5), np.zeros(5); scene = 0
     for event_type, event_len in zip(event_types, event_lens):
         for _ in range(event_len):
-            if event_type in ('social', 'simultaneous'):
-                social_level += rng.uniform(0, 2 * build_up_increment, 5); story[scene, social_features] = social_level + rng.normal(0, within_event_noise, 5)
-            if event_type in ('locational', 'simultaneous'):
-                locational_level += rng.uniform(0, 2 * build_up_increment, 5); story[scene, locational_features] = locational_level + rng.normal(0, within_event_noise, 5)
+            if event_type in ('narrative1', 'simultaneous'):
+                narrative1_level += rng.uniform(0, 2 * build_up_increment, 5); story[scene, narrative1_features] = narrative1_level + rng.normal(0, within_event_noise, 5)
+            if event_type in ('narrative2', 'simultaneous'):
+                narrative2_level += rng.uniform(0, 2 * build_up_increment, 5); story[scene, narrative2_features] = narrative2_level + rng.normal(0, within_event_noise, 5)
             story[scene, noise_features] = rng.normal(0, noise_sd, 2)                                    # inactive features stay exactly 0
             scene += 1
     return story, event_types, event_lens, event_starts
@@ -55,7 +55,7 @@ def insertion_sort(units, unit_scenes, narrative_features):
     return sorted_units, sorted_scenes, num_comparisons
 
 def sort_story(story, sort_unit_len):
-    # social scenes clustered first, then locational; simultaneous scenes appear in both
+    # narrative1 scenes clustered first, then narrative2; simultaneous scenes appear in both
     units, unit_scenes = chunk_story(story, sort_unit_len)
     sorted_output, num_comparisons, amount_shift, squared_errors, narrative_bounds = [], 0, 0, [], []
     for narrative_features in narratives.values():
@@ -84,23 +84,23 @@ def get_optimal_sort_unit_len(story, avg_event_len):
 seed, n_events, avg_event_len, sd_event_len = 0, 10, 10, 2
 story, event_types, event_lens, event_starts = make_story(seed=6, n_events=6, avg_event_len=avg_event_len, sd_event_len=0)             # schematic only: 6 equal-length events so chunks land on events and within-event ramps are visible; seed 6 shows alternation with a repeat
 
-cmaps = {'social': plt.cm.Reds, 'locational': plt.cm.YlOrBr, 'noise': plt.cm.Greys}
+cmaps = {'narrative1': plt.cm.Reds, 'narrative2': plt.cm.YlOrBr, 'noise': plt.cm.Greys}
 def colorize(stream):
-    # social rows in reds, locational in yellows, noise in greys; shade = level relative to the story's max level; exact zeros (inactive) are white
+    # narrative1 rows in reds, narrative2 in yellows, noise in greys; shade = level relative to the story's max level; exact zeros (inactive) are white
     max_level = story[:, :noise_features.start].max(); img = np.zeros((n_features, len(stream), 4))
-    for name, features in [('social', social_features), ('locational', locational_features), ('noise', noise_features)]:
+    for name, features in [('narrative1', narrative1_features), ('narrative2', narrative2_features), ('noise', noise_features)]:
         img[features] = cmaps[name](.15 + .85 * np.clip(stream[:, features].T / max_level, 0, 1))
     img[stream.T == 0] = 1
     return img
 
-fig, ax = plt.subplots(2, 2, figsize=(8, 4)); fig.suptitle('Sorting scenes by build up of each narrative')
+fig, ax = plt.subplots(2, 2, figsize=(8, 4))
 for row, sort_unit_len in enumerate([1, avg_event_len]):
     units, unit_scenes = chunk_story(story, sort_unit_len)
     processed_input = np.vstack([[unit] * len(scenes) for unit, scenes in zip(units, unit_scenes)])
     sorted_output, amount_shift, precision_error, narrative_bounds, _ = sort_story(story, sort_unit_len)
-    for col, (title, stream) in enumerate([('processed input', processed_input), ('sorted output', sorted_output)]):
+    for col, (title, stream) in enumerate([('Scrambled input', processed_input), ('Cross-linked output', sorted_output)]):
         ax[row, col].imshow(colorize(stream), aspect='auto', interpolation='none')
-        ax[row, col].set(title=title if row == 0 else '', xticks=[], yticks=[2, 7, 10.5], yticklabels=['social', 'locational', 'noise'] if col == 0 else [])
+        ax[row, col].set(title=title if row == 0 else '', xticks=[], yticks=[2, 7, 10.5], yticklabels=['narrative1', 'narrative2', 'noise'] if col == 0 else [])
     ax[row, 0].set(ylabel=f'unit = {"scene" if sort_unit_len == 1 else "event"}')
     ax[row, 1].text(1.02, .5, f'amount shift: {amount_shift}\nprecision error: {precision_error:.2f}', transform=ax[row, 1].transAxes, va='center', fontsize=9)
 plt.tight_layout(); plt.savefig(os.path.join(figs_dir, 'schematic.png'), dpi=200, bbox_inches='tight'); plt.close()
