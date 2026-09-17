@@ -1,4 +1,4 @@
-# see markdowns/formalization.md
+# see markdowns/1_optimal_chunks.md
 import numpy as np, matplotlib.pyplot as plt, os
 from matplotlib.transforms import blended_transform_factory
 from utils import plot_style, norm01; plot_style('notebook')
@@ -103,7 +103,7 @@ for row, sort_unit_len in enumerate([1, avg_event_len]):
         ax[row, col].set(title=title if row == 0 else '', xticks=[], yticks=[2, 7, 10.5], yticklabels=['narrative1', 'narrative2', 'noise'] if col == 0 else [])
     ax[row, 0].set(ylabel=f'unit = {"scene" if sort_unit_len == 1 else "event"}')
     ax[row, 1].text(1.02, .5, f'amount shift: {amount_shift}\nprecision error: {precision_error:.2f}', transform=ax[row, 1].transAxes, va='center', fontsize=9)
-plt.tight_layout(); plt.savefig(os.path.join(figs_dir, 'schematic.png'), dpi=200, bbox_inches='tight'); plt.close()
+plt.tight_layout(); plt.savefig(os.path.join(figs_dir, '1_optimal_chunks_schematic.png'), dpi=200, bbox_inches='tight'); plt.close()
 
 
 ### optimization: sweep sort_unit_len across seeds, and sweep avg_event_len
@@ -145,4 +145,4 @@ for avg_event_len_sweep in avg_event_lens:
 correlation = np.corrcoef(avg_event_lens, optimal_sort_unit_lens_mean)[0, 1]
 ax_event_len.set(title=f'r = {correlation:.2f} ({n_reps} seeds per point)', xlabel='avg. event length', ylabel='optimal sort unit length', xlim=(4, 16), ylim=(4, 16), xticks=[5, 10, 15], yticks=[5, 10, 15])
 ax_event_len.plot([4, 16], [4, 16], ls='--', c='gray', alpha=.5); ax_event_len.scatter(avg_event_lens, optimal_sort_unit_lens_mean)
-plt.tight_layout(); plt.savefig(os.path.join(figs_dir, 'optimization.png'), dpi=200, bbox_inches='tight'); plt.close()
+plt.tight_layout(); plt.savefig(os.path.join(figs_dir, '1_optimal_chunks_optimization.png'), dpi=200, bbox_inches='tight'); plt.close()

@@ -1,4 +1,3 @@
-
 * Consider a story as an input, where each scene is a high dimensional embedding, and is primarily dominated by 2 narratives: narrative1 event the social dynamics between the 2 characters, and narrative2 event the places they are visiting through the story. Say that narrative1 is captured by features 1-5, narrative2 by 6-10, and 11/12 are noise.
 * testing
 * Say that narrative1 and narrative2 get built over the course of the story, in events. Say that events are of 3 types: narrative1, narrative2, simultaneous (simultaneous dropped for now; event type is random per event, so same type may repeat). Say that this build up is captured by an increase in the avg value of the corresponding features.
@@ -11,4 +10,4 @@
 
 * amount_shift replaced num_comparisons: comparisons fall as ~1/sort_unit_len², so the optimum bottomed out early; shift falls as ~1/sort_unit_len. num_comparisons still returned, not plotted.
 * sweep capped at 2 × avg_event_len: both costs are flat beyond that, and min–max normalizing (each cost rescaled 0–1 over the sweep before summing) gets skewed by the flat tail.
-* schematic.png uses equal event lengths (sd = 0) and 6 events, so chunks land on events and within-event ramps are visible. optimization.png uses sd = 2, 10 events, 20 seeds.
+* 1_optimal_chunks_schematic.png uses equal event lengths (sd = 0) and 6 events, so chunks land on events and within-event ramps are visible. 1_optimal_chunks_optimization.png uses sd = 2, 10 events, 20 seeds.
