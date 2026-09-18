@@ -1,9 +1,9 @@
 * Recipe:
-  * Inputs: contrast bayesian-surprisal vs bayesian surprise vs narr-departure
+  * Inputs: contrast bayesian-surprisal vs bayesian surprise vs narr-discontinuity
 
     * surprisal: timeseries that spikes at every event start
     * bayesian surprisal: spikes additively at every switch *into* narrative; amplitude weighted by total_updated_narr_features, i.e., num_features across narratives that come on (are switched into)
-    * narr-departure: separate timeseries per narratives, which spike at every switch *out* of the corresponding narrative.
+    * narr-discontinuity: separate timeseries per narratives, which spike at every switch *out* of the corresponding narrative.
   * Model:
   * Outputs to contrast:
 
