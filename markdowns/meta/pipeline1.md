@@ -7,10 +7,8 @@
   * Model:
   * Outputs to contrast:
 
-    * COMPOSITIONALITY
     * boundary location, event memory
-
-      * Increased surprisal vs decreased coherence -> basically your 2 models should recover your 2 contrasted input features
+    * * Increased surprisal vs decreased coherence -> basically your 2 models should recover your 2 contrasted input features
     * Cued and free recall (noise-robust and diverse next-event predictions)
 
       * A direct readout of your model above
